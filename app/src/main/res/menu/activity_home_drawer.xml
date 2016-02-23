@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <!-- Icon made by Freepik from www.flaticon.com -->
+        <item
+            android:id="@+id/nav_sports"
+            android:icon="@drawable/ic_football_ball"
+            android:title="@string/menu_item_sports" />
+
+        <!-- Icon made by Freepik from www.flaticon.com -->
+        <item
+            android:id="@+id/nav_politics"
+            android:icon="@drawable/ic_shake_hands"
+            android:title="@string/menu_item_politics" />
+
+        <!-- Icon made by Situ Herrera from www.flaticon.com -->
+        <item
+            android:id="@+id/nav_tech"
+            android:icon="@drawable/ic_screen"
+            android:title="@string/menu_item_tech" />
+
+        <!-- Icon made by Freepik from www.flaticon.com -->
+        <item
+            android:id="@+id/nav_international"
+            android:icon="@drawable/ic_world"
+            android:title="@string/menu_item_international" />
+
+        <!-- Icon made by Freepik from www.flaticon.com -->
+        <item
+            android:id="@+id/nav_economy"
+            android:icon="@drawable/ic_money_bag_with_dollar_symbol"
+            android:title="@string/menu_item_economy" />
+
+        <!-- Icon made by Picol from www.flaticon.com -->
+        <item
+            android:id="@+id/nav_daily"
+            android:icon="@drawable/ic_folded_newspaper"
+            android:title="@string/menu_item_daily" />
+    </group>
+
+    <item android:title="@string/menu_section_user">
+        <menu>
+            <!-- Icon made by Freepik from www.flaticon.com -->
+            <item
+                android:id="@+id/nav_views"
+                android:icon="@drawable/ic_eye_close_up"
+                android:title="@string/menu_item_views" />
+
+            <!-- Icon made by Freepik from www.flaticon.com -->
+            <item
+                android:id="@+id/nav_saved"
+                android:icon="@drawable/ic_bookmark"
+                android:title="@string/menu_item_saved" />
+        </menu>
+    </item>
+
+</menu>

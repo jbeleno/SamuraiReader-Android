@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Katana</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="nav_title">SamuraiReader</string>
+    <string name="nav_subtitle">samuraireader@gmail.com</string>
+
+    <!-- Menu items -->
+    <string name="menu_item_sports">Esportes</string>
+    <string name="menu_item_politics">Política</string>
+    <string name="menu_item_tech">Tecnologia</string>
+    <string name="menu_item_international">Internacional</string>
+    <string name="menu_item_economy">Economia</string>
+    <string name="menu_item_daily">Cotidiano</string>
+
+    <!-- Menu section about user -->
+    <string name="menu_section_user">Usuario</string>
+    <string name="menu_item_views">Vistas</string>
+    <string name="menu_item_saved">Salvos</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

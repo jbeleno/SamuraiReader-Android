@@ -1,0 +1,18 @@
+<android.support.v4.widget.SwipeRefreshLayout
+    android:id="@+id/swipe_eventos"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:clickable="true">
+
+    <ListView
+        android:id="@+id/eventos_data"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="@dimen/articles_divider"
+        android:paddingLeft="@dimen/articles_sides_padding"
+        android:paddingRight="@dimen/articles_sides_padding"
+        android:paddingTop="@dimen/articles_top_margin"/>
+
+</android.support.v4.widget.SwipeRefreshLayout>
