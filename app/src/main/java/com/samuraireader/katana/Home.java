@@ -3,6 +3,8 @@ package com.samuraireader.katana;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,6 +14,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.samuraireader.katana.fragments.ArticlesFragment;
 
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -79,9 +83,11 @@ public class Home extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        String link = "http://nodejs-jbeleno.rhcloud.com/articles/list";
+        String section = "test";
 
         if (id == R.id.nav_sports) {
-            // Handle the camera action
+
         } else if (id == R.id.nav_politics) {
 
         } else if (id == R.id.nav_tech) {
@@ -97,6 +103,16 @@ public class Home extends AppCompatActivity
         } else if (id == R.id.nav_views) {
 
         }
+
+        // The fragment is inflated depending on section selected by the user
+        Fragment fragment = ArticlesFragment.newInstance(section, link);
+
+        FragmentManager fragmentoManager = getSupportFragmentManager();
+        fragmentoManager.beginTransaction()
+                .add(R.id.content_frame, fragment, null)
+                .addToBackStack(null)
+                .commit();
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

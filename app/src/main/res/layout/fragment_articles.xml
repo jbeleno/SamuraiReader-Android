@@ -5,10 +5,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:clickable="true">
 
-    <ListView
-        android:id="@+id/eventos_data"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/articles_data"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scrollbars="vertical"
         android:divider="@android:color/transparent"
         android:dividerHeight="@dimen/articles_divider"
         android:paddingLeft="@dimen/articles_sides_padding"

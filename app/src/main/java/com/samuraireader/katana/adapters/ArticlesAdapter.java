@@ -1,50 +1,61 @@
 package com.samuraireader.katana.adapters;
 
-import android.app.Activity;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.TextView;
 
+import com.samuraireader.katana.R;
 import com.samuraireader.katana.models.ArticlesEntry;
-
 import java.util.List;
 
-public class ArticlesAdapter extends BaseAdapter {
-    private Activity activity;
+public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ViewHolder> {
     private List<ArticlesEntry> articles;
 
+    // This is just a reference class to the item layout used to inflate in the
+    // ListView, this is done for performace and memory reasons
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        public TextView mTitle, mDescription;
 
-    /**
-     * This is a constructor where we took some data from the frament
-     * and we use it to setup the needed to start a ListView of articles
-     * items.
-     *
-     * @param activity: The activity where the adapter it's being called
-     * @param articles: An array of Articles
-     */
-    public ArticlesAdapter(Activity activity,
-                         List<ArticlesEntry> articles){
-        this.activity = activity;
+        public ViewHolder(View v) {
+            super(v);
+            mTitle = (TextView) v.findViewById(R.id.title);
+            mDescription = (TextView) v.findViewById(R.id.description);
+        }
+    }
+
+    // A nice constructor to get the articles
+    public ArticlesAdapter(List<ArticlesEntry> articles) {
         this.articles = articles;
     }
 
+    // Create new views (invoked by the layout manager)
     @Override
-    public int getCount() {
+    public ArticlesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
+                                                   int viewType) {
+        // create a new view
+        View v = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.articles_item, parent, false);
+
+        // If we won't change view's size, margins, paddings and layout parameters
+        // return directly
+        return new ViewHolder(v);
+    }
+
+    // Replace the contents of a view (invoked by the layout manager)
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        // - get element from your dataset at this position
+        // - replace the contents of the view with that element
+        holder.mTitle.setText(articles.get(position).getTitle());
+        holder.mDescription.setText(articles.get(position).getDescription());
+
+    }
+
+    // Return the size of your dataset (invoked by the layout manager)
+    @Override
+    public int getItemCount() {
         return articles.size();
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return articles.get(position);
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        return null;
     }
 }

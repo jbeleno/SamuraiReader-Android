@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.samuraireader.katana">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".util.AppSamuraiReader"
         android:allowBackup="true"
