@@ -10,10 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="@dimen/articles_divider"
-        android:paddingLeft="@dimen/articles_sides_padding"
-        android:paddingRight="@dimen/articles_sides_padding"
-        android:paddingTop="@dimen/articles_top_margin"/>
+        android:background="@color/colorPrimaryDark"/>
 
 </android.support.v4.widget.SwipeRefreshLayout>

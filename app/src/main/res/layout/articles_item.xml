@@ -1,15 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/articles_item_margin_vertical"
+    android:layout_marginBottom="@dimen/articles_item_margin_vertical">
 
-    <TextView
-        android:id="@+id/title"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/soft_black">
 
-    <TextView
-        android:id="@+id/description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <View
+            android:layout_width="80dp"
+            android:layout_height="4dp"
+            android:background="@color/colorAccent"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/articles_item_padding_vertical"
+            android:paddingBottom="@dimen/articles_item_padding_vertical"
+            android:paddingLeft="@dimen/articles_item_padding_sides"
+            android:paddingRight="@dimen/articles_item_padding_sides">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/light_gray"
+                android:textStyle="bold"
+                android:textSize="@dimen/articles_title_font"/>
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/articles_item_description_top_margin"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/articles_title_font"
+                android:scrollHorizontally="true"
+                android:ellipsize="end"
+                android:maxLines="3"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
 </LinearLayout>

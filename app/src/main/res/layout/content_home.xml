@@ -7,7 +7,8 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.samuraireader.katana.Home"
     tools:showIn="@layout/app_bar_home"
-    android:id="@+id/content_frame">
+    android:id="@+id/content_frame"
+    android:background="@color/colorPrimaryDark">
 
 
 </FrameLayout>

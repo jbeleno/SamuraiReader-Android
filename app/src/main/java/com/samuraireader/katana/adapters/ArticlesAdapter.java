@@ -1,6 +1,7 @@
 package com.samuraireader.katana.adapters;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +50,7 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ViewHo
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.mTitle.setText(articles.get(position).getTitle());
-        holder.mDescription.setText(articles.get(position).getDescription());
+        holder.mDescription.setText(Html.fromHtml(articles.get(position).getDescription()));
 
     }
 

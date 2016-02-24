@@ -10,7 +10,13 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
     <!-- Articles -->
-    <dimen name="articles_sides_padding">8dp</dimen>
     <dimen name="articles_divider">8dp</dimen>
     <dimen name="articles_top_margin">8dp</dimen>
+    <!-- Articles items -->
+    <dimen name="articles_title_font">16sp</dimen>
+    <dimen name="articles_description_font">14sp</dimen>
+    <dimen name="articles_item_padding_vertical">16dp</dimen>
+    <dimen name="articles_item_padding_sides">8dp</dimen>
+    <dimen name="articles_item_margin_vertical">8dp</dimen>
+    <dimen name="articles_item_description_top_margin">8dp</dimen>
 </resources>

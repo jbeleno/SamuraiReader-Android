@@ -23,8 +23,8 @@
     <string name="menu_item_saved">Salvos</string>
 
     <!-- Volley load -->
-    <string name="error_conection">Por favor,verifique sua conexão com a internet</string>
-    <string name="error_server">Estamos tendo algumos problemas nossos servidores, tente de novo em alguns minutinhos</string>
+    <string name="error_conection">Por favor, verifique sua conexão com a internet</string>
+    <string name="error_server">Estamos tendo alguns problemas em nossos servidores, tente de novo em alguns minutinhos</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -2,12 +2,13 @@ package com.samuraireader.katana.fragments;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -106,8 +107,15 @@ public class ArticlesFragment extends Fragment {
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
+        // Load articles depending on the section choosen
+        loadArticles();
+
+        // Change the title
+        mListener.onTitleChange(section);
+
         return view;
     }
+
 
     // Using Volley library I get the articles from the URL passed in the arguments
     public void loadArticles(){
@@ -135,6 +143,7 @@ public class ArticlesFragment extends Fragment {
             @Override
             public void onResponse(String response) {
                 progress.dismiss();
+                Log.d("Hola", response);
                 try{
                     JSONObject jsonObj = new JSONObject(response);
                     if(jsonObj.get(STR_STATUS).equals(STR_OK)){
@@ -182,14 +191,6 @@ public class ArticlesFragment extends Fragment {
         };
     }
 
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -212,13 +213,10 @@ public class ArticlesFragment extends Fragment {
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
      * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+
+        // This method is for changing the title in the activity
+        void onTitleChange(String title);
     }
 }
