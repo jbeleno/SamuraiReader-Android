@@ -39,20 +39,4 @@
             android:title="@string/menu_item_daily" />
     </group>
 
-    <item android:title="@string/menu_section_user">
-        <menu>
-            <!-- Icon made by Freepik from www.flaticon.com -->
-            <item
-                android:id="@+id/nav_views"
-                android:icon="@drawable/ic_eye_close_up"
-                android:title="@string/menu_item_views" />
-
-            <!-- Icon made by Freepik from www.flaticon.com -->
-            <item
-                android:id="@+id/nav_saved"
-                android:icon="@drawable/ic_bookmark"
-                android:title="@string/menu_item_saved" />
-        </menu>
-    </item>
-
 </menu>

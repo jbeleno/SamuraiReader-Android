@@ -3,8 +3,8 @@ package com.samuraireader.katana.fragments;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,6 +20,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.samuraireader.katana.R;
 import com.samuraireader.katana.adapters.ArticlesAdapter;
 import com.samuraireader.katana.models.ArticlesEntry;
+import com.samuraireader.katana.util.AppSamuraiReader;
 import com.samuraireader.katana.util.Message;
 import com.samuraireader.katana.util.MyVolley;
 import org.json.JSONArray;
@@ -37,7 +38,7 @@ import java.util.Map;
  * Use the {@link ArticlesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ArticlesFragment extends Fragment {
+public class ArticlesFragment extends Fragment{
     private static final String ARG_SECTION = "section";
     private static final String ARG_LINK = "link";
 
@@ -53,14 +54,14 @@ public class ArticlesFragment extends Fragment {
     private String section;
     private String link;
     private int offset = 0;
-    boolean final_scroll = false;
+    boolean loadingLocked = false;
 
     private ProgressDialog progress;
     private SwipeRefreshLayout swipeLayout;
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+    private LinearLayoutManager mLayoutManager;
     private ArrayList<ArticlesEntry> mDataset = new ArrayList<>();
 
     private OnFragmentInteractionListener mListener;
@@ -113,14 +114,21 @@ public class ArticlesFragment extends Fragment {
         // Change the title
         mListener.onTitleChange(section);
 
+        // Setting the action when the user reload the data
+        swipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_articles);
+        swipeLayout.setOnRefreshListener(new RefreshListener());
+
         return view;
     }
 
 
     // Using Volley library I get the articles from the URL passed in the arguments
     public void loadArticles(){
-        progress = ProgressDialog.show(getActivity(), getString(R.string.app_name),
-                                                getString(R.string.app_name), true);
+        if(offset == 0) {
+            progress = ProgressDialog.show(getActivity(), getString(R.string.app_name),
+                    getString(R.string.app_name), true);
+        }
+
         RequestQueue queue = MyVolley.getRequestQueue();
 
         StringRequest myReq = new StringRequest(Request.Method.POST,
@@ -143,7 +151,6 @@ public class ArticlesFragment extends Fragment {
             @Override
             public void onResponse(String response) {
                 progress.dismiss();
-                Log.d("Hola", response);
                 try{
                     JSONObject jsonObj = new JSONObject(response);
                     if(jsonObj.get(STR_STATUS).equals(STR_OK)){
@@ -161,18 +168,28 @@ public class ArticlesFragment extends Fragment {
                                 mDataset.add(new ArticlesEntry(link, title, description));
                             }
                             if (offset == 0) {
-                                mAdapter = new ArticlesAdapter(mDataset);
+                                mAdapter = new ArticlesAdapter(mDataset, new ArticlesAdapter.MyFragmentRedirecter() {
+                                    @Override
+                                    public void loadFragment(String link) {
+                                        mListener.loadFragment(link);
+                                    }
+                                });
                                 mRecyclerView.setAdapter(mAdapter);
+
+                                mRecyclerView.addOnScrollListener(new ArticlesScrollListener());
                             } else {
                                 mAdapter.notifyDataSetChanged();
                             }
-                            final_scroll = false;
                         }
+
+                        loadingLocked = false;
                     }else{
                         Message.show(getString(R.string.error_server), getActivity());
+                        loadingLocked = false;
                     }
                 }catch (JSONException e){
                     Message.show(getString(R.string.error_server), getActivity());
+                    loadingLocked = false;
                 }
             }
         };
@@ -186,6 +203,7 @@ public class ArticlesFragment extends Fragment {
             public void onErrorResponse(VolleyError error) {
 
                 progress.dismiss();
+                loadingLocked = false;
                 Message.show(getString(R.string.error_conection), getActivity());
             }
         };
@@ -205,6 +223,7 @@ public class ArticlesFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+        mListener.onTitleChange("");
         mListener = null;
     }
 
@@ -218,5 +237,63 @@ public class ArticlesFragment extends Fragment {
 
         // This method is for changing the title in the activity
         void onTitleChange(String title);
+
+        // Load another Fragment
+        void loadFragment(String link);
+    }
+
+    /**
+     * This class handles the reload action when the user swipe down,
+     * basically stop the reload animation after a second and clean the
+     * articles dataset and the offset is set in 0, loading again the articles
+     * under this criteria
+     */
+    private class RefreshListener implements SwipeRefreshLayout.OnRefreshListener{
+        @Override public void onRefresh() {
+            new Handler().postDelayed(new Runnable() {
+                @Override public void run() {
+
+                    swipeLayout.setRefreshing(false);
+                    mDataset = new ArrayList<>();
+                    offset = 0;
+
+                    loadArticles();
+                }
+            }, 1000);
+        }
+    }
+
+
+    /**
+     * This class is used to listen the scroll and when is on the final of the content
+     * then try to load more information of news articles.
+     */
+    private class ArticlesScrollListener extends RecyclerView.OnScrollListener {
+
+        @Override
+        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            if(dy > 0) //check for scroll down
+            {
+                int visibleItemCount = mLayoutManager.getChildCount();
+                int totalItemCount = mLayoutManager.getItemCount();
+                int pastVisiblesItems = mLayoutManager.findFirstVisibleItemPosition();
+
+                if (!loadingLocked)
+                {
+                    if ( (visibleItemCount + pastVisiblesItems) >= totalItemCount)
+                    {
+                        offset++;
+                        loadingLocked = true;
+                        Log.d(AppSamuraiReader.getTag(), String.valueOf(offset));
+                        loadArticles();
+                    }
+                }
+            }
+        }
+
+        @Override
+        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+
+        }
     }
 }

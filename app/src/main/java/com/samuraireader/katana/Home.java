@@ -10,10 +10,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.samuraireader.katana.fragments.ArticlesFragment;
+import com.samuraireader.katana.util.AppSamuraiReader;
 
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -70,6 +72,11 @@ public class Home extends AppCompatActivity
             actionBar.setTitle(title);
     }
 
+    @Override
+    public void loadFragment(String link) {
+        Log.d(AppSamuraiReader.getTag(), link);
+    }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -89,10 +96,6 @@ public class Home extends AppCompatActivity
         } else if (id == R.id.nav_economy) {
 
         } else if (id == R.id.nav_daily) {
-
-        } else if (id == R.id.nav_saved) {
-
-        } else if (id == R.id.nav_views) {
 
         }
 
