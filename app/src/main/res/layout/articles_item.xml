@@ -12,9 +12,9 @@
         android:background="@color/soft_black">
 
         <View
-            android:layout_width="80dp"
-            android:layout_height="4dp"
-            android:background="@color/colorAccent"/>
+            android:id="@+id/decoration"
+            android:layout_width="@dimen/articles_item_decoration_width"
+            android:layout_height="@dimen/articles_item_decoration_height"/>
 
         <LinearLayout
             android:orientation="vertical"

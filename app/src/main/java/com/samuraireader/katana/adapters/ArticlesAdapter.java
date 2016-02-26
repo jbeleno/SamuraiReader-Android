@@ -1,5 +1,6 @@
 package com.samuraireader.katana.adapters;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,12 +21,14 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ViewHo
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView mTitle, mDescription;
         public MyViewHolderClicks mListener;
+        public View mDecoration;
 
         public ViewHolder(View v, MyViewHolderClicks mListener) {
             super(v);
             this.mListener = mListener;
             mTitle = (TextView) v.findViewById(R.id.title);
             mDescription = (TextView) v.findViewById(R.id.description);
+            mDecoration = v.findViewById(R.id.decoration);
             v.setOnClickListener(this);
         }
 
@@ -72,6 +75,50 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ViewHo
         holder.mTitle.setText(articles.get(position).getTitle());
         holder.mDescription.setText(articles.get(position).getDescription());
 
+        String tag = articles.get(position).getTag();
+        String color = getColor(tag);
+
+        holder.mDecoration.setBackgroundColor(Color.parseColor(color));
+    }
+
+    public String getColor(String tag){
+        final String STR_SPORTS = "Esportes";
+        final String STR_POLITICS = "Política";
+        final String STR_TECH = "Tecnologia";
+        final String STR_WORLD = "Internacional";
+        final String STR_ECONOMY = "Economia";
+        final String STR_DAILY = "Cotidiano";
+
+        final String STR_RED = "#F44336";
+        final String STR_PURPLE = "#9C27B0";
+        final String STR_BLUE = "#2196F3";
+        final String STR_TEAL = "#009688";
+        final String STR_ORANGE = "#FF9800";
+        final String STR_PINK = "#E91E63";
+        final String STR_GREEN = "#4CAF50";
+
+        switch (tag){
+            case STR_SPORTS:
+                return STR_RED;
+
+            case STR_POLITICS:
+                return STR_PURPLE;
+
+            case STR_TECH:
+                return STR_BLUE;
+
+            case STR_WORLD:
+                return STR_TEAL;
+
+            case STR_ECONOMY:
+                return STR_ORANGE;
+
+            case STR_DAILY:
+                return STR_PINK;
+
+        }
+
+        return STR_GREEN;
     }
 
     // Return the size of your dataset (invoked by the layout manager)

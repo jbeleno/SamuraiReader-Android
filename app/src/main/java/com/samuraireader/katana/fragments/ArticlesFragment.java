@@ -43,6 +43,7 @@ public class ArticlesFragment extends Fragment{
     private static final String ARG_LINK = "link";
 
     private static final String PARAM_OFFSET = "offset";
+    private static final String PARAM_TAG = "tag";
 
     private static final String STR_STATUS = "status";
     private static final String STR_OK = "OK";
@@ -50,6 +51,7 @@ public class ArticlesFragment extends Fragment{
     private static final String STR_TITLE = "title";
     private static final String STR_DESCRIPTION = "description";
     private static final String STR_LINK = "link";
+    private static final String STR_CATEGORIES = "categories";
 
     private String section;
     private String link;
@@ -138,6 +140,7 @@ public class ArticlesFragment extends Fragment{
             protected Map<String, String> getParams() throws com.android.volley.AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put(PARAM_OFFSET, String.valueOf(offset));
+                params.put(PARAM_TAG, section);
                 return params;
             }
         };
@@ -164,8 +167,13 @@ public class ArticlesFragment extends Fragment{
                                 String link = article.getString(STR_LINK);
                                 String title = article.getString(STR_TITLE);
                                 String description = article.getString(STR_DESCRIPTION);
+                                JSONArray categories = article.getJSONArray(STR_CATEGORIES);
+                                String tag = "";
+                                if(categories != null){
+                                    tag = categories.get(0).toString();
+                                }
 
-                                mDataset.add(new ArticlesEntry(link, title, description));
+                                mDataset.add(new ArticlesEntry(link, title, description, tag));
                             }
                             if (offset == 0) {
                                 mAdapter = new ArticlesAdapter(mDataset, new ArticlesAdapter.MyFragmentRedirecter() {

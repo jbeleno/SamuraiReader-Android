@@ -1,14 +1,14 @@
 package com.samuraireader.katana.fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 
 import com.samuraireader.katana.R;
 
@@ -56,20 +56,29 @@ public class ArticleFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView =  inflater.inflate(R.layout.fragment_article, container, false);
 
-        WebView articlePage = (WebView) rootView.findViewById(R.id.webview_article);
+        final ProgressBar progressBar = (ProgressBar) rootView.findViewById(R.id.progressBar);
+        final WebView articlePage = (WebView) rootView.findViewById(R.id.webview_article);
 
         articlePage.getSettings().setJavaScriptEnabled(true);
-        articlePage .loadUrl(mLink);
+        articlePage.loadUrl(mLink);
+        articlePage.getSettings().setUserAgentString("Mozilla/5.0 (Linux; U; Android 2.0; en-us; Droid Build/ESD20) AppleWebKit/530.17 (KHTML, like Gecko) Version/4.0 Mobile Safari/530.17");
+        articlePage.setWebChromeClient(new WebChromeClient() {
+            public void onProgressChanged(WebView view, int progress) {
+                progressBar.setProgress(progress);
+                if (progress == 100) {
+                    progressBar.setVisibility(View.GONE);
+
+                } else {
+                    progressBar.setVisibility(View.VISIBLE);
+
+                }
+            }
+        });
         articlePage.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
                 return true;
-            }
-
-            @Override
-            public void onPageFinished(WebView view, String url) {
-
             }
         });
 

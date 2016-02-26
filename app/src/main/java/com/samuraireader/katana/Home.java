@@ -22,6 +22,9 @@ public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
                    ArticlesFragment.OnFragmentInteractionListener{
 
+    private String link = "http://nodejs-jbeleno.rhcloud.com/articles/list";
+    private String section = "Esportes";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +40,15 @@ public class Home extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        // The sport fragment is inflated by default
+        Fragment fragment = ArticlesFragment.newInstance(section, link);
+
+        FragmentManager fragmentoManager = getSupportFragmentManager();
+        fragmentoManager.beginTransaction()
+                .add(R.id.content_frame, fragment, null)
+                .addToBackStack(null)
+                .commit();
     }
 
     @Override
@@ -91,21 +103,19 @@ public class Home extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        String link = "http://nodejs-jbeleno.rhcloud.com/articles/list";
-        String section = "Esportes";
 
         if (id == R.id.nav_sports) {
-
+            section = "Esportes";
         } else if (id == R.id.nav_politics) {
-
+            section = "Política";
         } else if (id == R.id.nav_tech) {
-
+            section = "Tecnologia";
         } else if (id == R.id.nav_international) {
-
+            section = "Internacional";
         } else if (id == R.id.nav_economy) {
-
+            section = "Economia";
         } else if (id == R.id.nav_daily) {
-
+            section = "Cotidiano";
         }
 
         // The fragment is inflated depending on section selected by the user
