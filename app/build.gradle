@@ -4,6 +4,14 @@ android {
     compileSdkVersion 23
     buildToolsVersion "19.1.0"
 
+    signingConfigs {
+        config {
+            keyAlias 'samuraiReader'
+            keyPassword 'samuraiReaderPassword'
+            storeFile file('/Users/Juan/Desktop/samuraiReader')
+            storePassword 'samuraiReaderPassword'
+        }
+    }
     defaultConfig {
         applicationId "com.samuraireader.katana"
         minSdkVersion 14
@@ -15,6 +23,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
 }
