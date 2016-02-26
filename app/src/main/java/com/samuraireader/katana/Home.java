@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.samuraireader.katana.fragments.ArticleFragment;
 import com.samuraireader.katana.fragments.ArticlesFragment;
 import com.samuraireader.katana.util.AppSamuraiReader;
 
@@ -74,7 +75,15 @@ public class Home extends AppCompatActivity
 
     @Override
     public void loadFragment(String link) {
-        Log.d(AppSamuraiReader.getTag(), link);
+
+        // Load the site in WebView using the article link
+        Fragment fragment = ArticleFragment.newInstance(link);
+
+        FragmentManager fragmentoManager = getSupportFragmentManager();
+        fragmentoManager.beginTransaction()
+                .add(R.id.content_frame, fragment, null)
+                .addToBackStack(null)
+                .commit();
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
