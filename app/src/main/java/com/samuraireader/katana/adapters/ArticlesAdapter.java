@@ -19,7 +19,7 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ViewHo
     // ListView, this is done for performace and memory reasons, also is created
     // a listener of clicks on the elements
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView mTitle, mDescription;
+        public TextView mTitle, mDescription, mJournal;
         public MyViewHolderClicks mListener;
         public View mDecoration;
 
@@ -28,6 +28,7 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ViewHo
             this.mListener = mListener;
             mTitle = (TextView) v.findViewById(R.id.title);
             mDescription = (TextView) v.findViewById(R.id.description);
+            mJournal = (TextView) v.findViewById(R.id.journal);
             mDecoration = v.findViewById(R.id.decoration);
             v.setOnClickListener(this);
         }
@@ -74,6 +75,7 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ViewHo
         // - replace the contents of the view with that element
         holder.mTitle.setText(articles.get(position).getTitle());
         holder.mDescription.setText(articles.get(position).getDescription());
+        holder.mJournal.setText(articles.get(position).getJournal());
 
         String tag = articles.get(position).getTag();
         String color = getColor(tag);

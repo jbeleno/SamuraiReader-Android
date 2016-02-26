@@ -51,6 +51,7 @@ public class ArticlesFragment extends Fragment{
     private static final String STR_TITLE = "title";
     private static final String STR_DESCRIPTION = "description";
     private static final String STR_LINK = "link";
+    private static final String STR_JOURNAL = "journal";
     private static final String STR_CATEGORIES = "categories";
 
     private String section;
@@ -167,13 +168,14 @@ public class ArticlesFragment extends Fragment{
                                 String link = article.getString(STR_LINK);
                                 String title = article.getString(STR_TITLE);
                                 String description = article.getString(STR_DESCRIPTION);
+                                String journal = article.getString(STR_JOURNAL);
                                 JSONArray categories = article.getJSONArray(STR_CATEGORIES);
                                 String tag = "";
                                 if(categories != null){
                                     tag = categories.get(0).toString();
                                 }
 
-                                mDataset.add(new ArticlesEntry(link, title, description, tag));
+                                mDataset.add(new ArticlesEntry(link, title, description, journal, tag));
                             }
                             if (offset == 0) {
                                 mAdapter = new ArticlesAdapter(mDataset, new ArticlesAdapter.MyFragmentRedirecter() {

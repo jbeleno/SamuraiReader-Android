@@ -6,16 +6,17 @@ package com.samuraireader.katana.models;
  * on the section selected
  */
 public class ArticlesEntry {
-    String link, title, description, tag;
+    String link, title, description, journal, tag;
 
     public ArticlesEntry(){
         // This is done for avoiding errors in the empty declaration
     }
 
-    public ArticlesEntry(String link, String title, String description, String tag){
+    public ArticlesEntry(String link, String title, String description, String journal, String tag){
         this.link = link;
         this.title = title;
         this.description = description;
+        this.journal = journal;
         this.tag = tag;
     }
 
@@ -35,8 +36,16 @@ public class ArticlesEntry {
         return title;
     }
 
+    public String getJournal() {
+        return journal;
+    }
+
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void setJournal(String journal) {
+        this.journal = journal;
     }
 
     public void setLink(String link) {

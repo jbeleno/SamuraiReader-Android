@@ -15,10 +15,12 @@
     <!-- Articles items -->
     <dimen name="articles_title_font">16sp</dimen>
     <dimen name="articles_description_font">14sp</dimen>
+    <dimen name="articles_journal_font">12sp</dimen>
     <dimen name="articles_item_padding_vertical">16dp</dimen>
     <dimen name="articles_item_padding_sides">8dp</dimen>
     <dimen name="articles_item_margin_vertical">8dp</dimen>
     <dimen name="articles_item_description_top_margin">8dp</dimen>
+    <dimen name="articles_item_journal_top_margin">8dp</dimen>
     <dimen name="articles_item_decoration_width">80dp</dimen>
     <dimen name="articles_item_decoration_height">4dp</dimen>
 </resources>

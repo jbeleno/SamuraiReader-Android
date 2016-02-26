@@ -44,6 +44,14 @@
                 android:ellipsize="end"
                 android:maxLines="3"/>
 
+            <TextView
+                android:id="@+id/journal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/articles_item_journal_top_margin"
+                android:gravity="end"
+                android:textColor="@color/dark_white"
+                android:textSize="@dimen/articles_journal_font"/>
 
         </LinearLayout>
 
