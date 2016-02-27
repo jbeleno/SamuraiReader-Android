@@ -1,3 +1,14 @@
+/**
+ * Title: SamuraiReader Android
+ * Version: 1.0
+ * Author: Juan Sebastián Beleño Díaz
+ * Email: jsbeleno@gmail.com
+ * Date: 27/02/2016
+ *
+ * This class handles with the adapter of the articles items, getting an array of items
+ * and setting the data in UI elements, always optimizing the performance and memory and
+ * using good pratices in code.
+ */
 package com.samuraireader.katana.adapters;
 
 import android.graphics.Color;
@@ -83,6 +94,11 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ViewHo
         holder.mDecoration.setBackgroundColor(Color.parseColor(color));
     }
 
+    /**
+     * This method select a color depending on the section choosen by the user
+     * @param tag is the section choosen by the user
+     * @return a hexadecimal color in string format
+     */
     public String getColor(String tag){
         final String STR_SPORTS = "Esportes";
         final String STR_POLITICS = "Política";

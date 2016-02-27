@@ -1,3 +1,13 @@
+/**
+ * Title: SamuraiReader Android
+ * Version: 1.0
+ * Author: Juan Sebastián Beleño Díaz
+ * Email: jsbeleno@gmail.com
+ * Date: 27/02/2016
+ *
+ * This class will be who will control the POST and GET requests to get some
+ * JSON data and some images
+ */
 package com.samuraireader.katana.util;
 
 
@@ -7,10 +17,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 
-/**
- * This class will be who will control the POST and GET requests to get some
- * JSON data and some images
- */
 public class MyVolley {
     private static RequestQueue mRequestQueue;
     private static ImageLoader mImageLoader;

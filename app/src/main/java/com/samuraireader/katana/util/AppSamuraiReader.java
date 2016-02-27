@@ -1,3 +1,13 @@
+/**
+ * Title: SamuraiReader Android
+ * Version: 1.0
+ * Author: Juan Sebastián Beleño Díaz
+ * Email: jsbeleno@gmail.com
+ * Date: 27/02/2016
+ *
+ * This is the application class that will control some initial settings
+ */
+
 package com.samuraireader.katana.util;
 
 import android.app.Application;

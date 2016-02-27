@@ -1,3 +1,13 @@
+/**
+ * Title: SamuraiReader Android
+ * Version: 1.0
+ * Author: Juan Sebastián Beleño Díaz
+ * Email: jsbeleno@gmail.com
+ * Date: 27/02/2016
+ *
+ * This class is the fragment that contains the single article information
+ * that basically is loading a web page and shows the progress for UX
+ */
 package com.samuraireader.katana.fragments;
 
 import android.os.Bundle;
@@ -12,11 +22,6 @@ import android.widget.ProgressBar;
 
 import com.samuraireader.katana.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ArticleFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ArticleFragment extends Fragment {
 
     private static final String ARG_LINK = "link";

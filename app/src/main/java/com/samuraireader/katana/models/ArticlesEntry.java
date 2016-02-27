@@ -1,10 +1,16 @@
-package com.samuraireader.katana.models;
-
 /**
+ * Title: SamuraiReader Android
+ * Version: 1.0
+ * Author: Juan Sebastián Beleño Díaz
+ * Email: jsbeleno@gmail.com
+ * Date: 27/02/2016
+ *
  * This class is designed to store the basic structure of an articles
  * that later will be used by the adapter to insert it in a list, depending
  * on the section selected
  */
+package com.samuraireader.katana.models;
+
 public class ArticlesEntry {
     String link, title, description, journal, tag;
 

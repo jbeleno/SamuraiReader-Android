@@ -1,3 +1,16 @@
+/**
+ * Title: SamuraiReader Android
+ * Version: 1.0
+ * Author: Juan Sebastián Beleño Díaz
+ * Email: jsbeleno@gmail.com
+ * Date: 27/02/2016
+ *
+ * This is the only activity in the app and it'll host fragments that shows a list
+ * of articles and the detailed article itself, also here is setting some thing about
+ * the Navigation Drawer, set the Titles usings an interface with fragments, and load
+ * more fragments depending on the user actions
+ */
+
 package com.samuraireader.katana;
 
 import android.os.Bundle;

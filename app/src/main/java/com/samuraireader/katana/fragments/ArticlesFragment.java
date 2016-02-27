@@ -1,3 +1,10 @@
+/**
+ * Title: SamuraiReader Android
+ * Version: 1.0
+ * Author: Juan Sebastián Beleño Díaz
+ * Email: jsbeleno@gmail.com
+ * Date: 27/02/2016
+ */
 package com.samuraireader.katana.fragments;
 
 import android.app.ProgressDialog;
@@ -30,14 +37,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link ArticlesFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link ArticlesFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ArticlesFragment extends Fragment{
     private static final String ARG_SECTION = "section";
     private static final String ARG_LINK = "link";
